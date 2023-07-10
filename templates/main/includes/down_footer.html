@@ -1,0 +1,92 @@
+{% load static %}
+
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+{#<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">#}
+
+>
+
+
+<!-- Button UP -->
+<script>
+    //Get the button
+    let mybutton = document.getElementById("btn-back-to-top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+        ) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.addEventListener("click", backToTop);
+
+    function backToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!-- /Button UP -->
+
+<!-- svg to text -->
+<script type="text/javascript">
+    $('img.img-svg').each(function () {
+        var $img = $(this);
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+        $.get(imgURL, function (data) {
+            var $svg = $(data).find('svg');
+            if (typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass + ' replaced-svg');
+            }
+            $svg = $svg.removeAttr('xmlns:a');
+            if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+                $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+            }
+            $img.replaceWith($svg);
+        }, 'xml');
+    });
+</script>
+<!-- svg to text -->
+
+<!-- cookie -->
+<script>
+    function checkCookies() {
+        let cookieDate = localStorage.getItem('cookieDate');
+        let cookieNotification = document.getElementById('cookie_notification');
+        let cookieBtn = cookieNotification.querySelector('.cookie_accept');
+
+        // Если записи про кукисы нет или она просрочена на 1 год, то показываем информацию про кукисы
+        if (!cookieDate || (+cookieDate + 31536000000) < Date.now()) {
+            cookieNotification.classList.add('show');
+        }
+
+        // При клике на кнопку, в локальное хранилище записывается текущая дата в системе UNIX
+        cookieBtn.addEventListener('click', function () {
+            localStorage.setItem('cookieDate', Date.now());
+            cookieNotification.classList.remove('show');
+        })
+    }
+
+    checkCookies();
+</script>
+<!-- /cookie -->
+
+<script>
+    $(window).on('load', function () {
+        $('#messagesuccess').modal('show');
+    });
+</script>
+

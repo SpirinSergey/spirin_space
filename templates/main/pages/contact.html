@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+    <style>
+
+    </style>
+
+    {# --------- block - 1 - TOP --------- #}
+    <section class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <h1 class="mb-5">Связаться со мной</h1>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-5">Контакты</h2>
+                <p>
+                    <a href="tel:+79601065848">+7 (960) 106-58-48</a>
+                </p>
+                <p>
+                    <a href="mailto:spirin1504@mail.ru">spirin1504@mail.ru</a>
+                </p>
+                <p>
+                    <a href="">Telegram</a>
+                </p>
+                <p>
+                    <a href="">Vk</a>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                {% include 'main/modals/forms/self/write_to_us.html' %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
