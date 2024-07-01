@@ -4,5 +4,9 @@ import Header from "./components/layout/Header.vue";
 
 <template>
   <Header />
-  <h1 class="text-4xl text-black underline">H ellao world!</h1>
+
+  <main>
+    <RouterView />
+  </main>
+  
 </template>
