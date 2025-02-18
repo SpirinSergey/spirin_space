@@ -4,7 +4,7 @@
   </h1>
 
     <div>
-    <p>Текущее значение: {{ counterStore.count }}</p>
+    <p>Текущее значение1: {{ counterStore.count }}</p>
     <button @click="counterStore.increment">Увеличить</button>
     <button @click="counterStore.decrement">Уменьшить</button>
   </div>
